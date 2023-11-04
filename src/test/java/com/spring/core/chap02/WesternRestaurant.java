@@ -1,19 +1,20 @@
 package com.spring.core.chap02;
 
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
-@NoArgsConstructor // 기본 생성자
+//@NoArgsConstructor // 기본 생성자
+@Component("wr") // hotelmanager에 객체 생성을 맡김
 public class WesternRestaurant implements Restaurant {
 
     // 의존 객체
     private Chef chef;
     private FrenchCourse course = new FrenchCourse();
 
-    public WesternRestaurant(Chef chef) {
-        this.chef = chef;
-    }
-
-    public void setChef(Chef chef) {
+    @Autowired
+    public WesternRestaurant(@Qualifier("jc") Chef chef) {
         this.chef = chef;
     }
 

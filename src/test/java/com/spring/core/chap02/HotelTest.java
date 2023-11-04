@@ -1,16 +1,20 @@
 package com.spring.core.chap02;
 
-import com.spring.core.chap01.config.HotelManager;
+import com.spring.core.chap02.config.HotelManager;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class HotelTest {
+
+    // 스프링 컨테이너를 읽어오는 객체
+    AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(HotelManager.class);
+
     @Test
-    void hotelTest() {
-//        Hotel hotel = new Hotel();
-//        hotel.reserve();
-        HotelManager hotelManager = new HotelManager();
-        Hotel hotel = hotelManager.hotel();
-        hotel.reserve();
+    void hotelAutoTest() {
+        Hotel bean = ctx.getBean(Hotel.class);
+        bean.reserve();
     }
 
 }

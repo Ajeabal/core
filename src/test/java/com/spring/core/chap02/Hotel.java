@@ -1,5 +1,10 @@
 package com.spring.core.chap02;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Hotel {
 
     // 의존관계: 어떤 객체가 어떤 객체를 필요로 하는 것
@@ -7,7 +12,8 @@ public class Hotel {
 
     private Chef headChef;
 
-    public Hotel(Restaurant restaurant, Chef headChef) {
+    @Autowired
+    public Hotel(@Qualifier("ar") Restaurant restaurant, @Qualifier("kc") Chef headChef) {
         this.restaurant = restaurant;
         this.headChef = headChef;
     }
